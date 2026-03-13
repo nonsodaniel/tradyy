@@ -10,12 +10,13 @@ import Link from 'next/link';
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-type Tab = 'crypto' | 'stock' | 'etf' | 'index';
+type Tab = 'crypto' | 'stock' | 'etf' | 'index' | 'commodity';
 
 const TABS: { key: Tab; label: string }[] = [
   { key: 'crypto', label: 'Crypto' },
   { key: 'stock', label: 'Stocks' },
   { key: 'etf', label: 'ETFs' },
+  { key: 'commodity', label: 'Commodities' },
   { key: 'index', label: 'Indices' },
 ];
 

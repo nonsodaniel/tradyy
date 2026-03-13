@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCryptoOHLCV } from '@/lib/api/coingecko';
-import { getStockOHLCV } from '@/lib/api/stocks';
+import { getStockOHLCV, toYFSymbol } from '@/lib/api/stocks';
 
 const chartCache = new Map<string, { data: unknown; ts: number }>();
 const CACHE_TTL = 60_000;
@@ -57,7 +57,9 @@ export async function GET(req: NextRequest) {
       data = await getCryptoOHLCV(coinId, days);
     } else {
       const { interval, range: yfRange } = rangeToYFParams(range);
-      data = await getStockOHLCV(symbol, interval, yfRange);
+      // Resolve commodity display symbols (e.g. XAU → GC=F) before querying YF
+      const yfSymbol = toYFSymbol(symbol);
+      data = await getStockOHLCV(yfSymbol, interval, yfRange);
     }
 
     chartCache.set(cacheKey, { data, ts: Date.now() });

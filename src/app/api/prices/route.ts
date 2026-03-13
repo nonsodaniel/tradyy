@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getTopCryptos, getCryptoPrices } from '@/lib/api/coingecko';
-import { getStockQuotes, POPULAR_STOCKS, POPULAR_ETFS, INDICES } from '@/lib/api/stocks';
+import { getStockQuotes, getCommodityPrices, POPULAR_STOCKS, POPULAR_ETFS, INDICES } from '@/lib/api/stocks';
 import type { AssetPrice } from '@/types/asset';
 
 const cache = new Map<string, { data: AssetPrice[]; ts: number }>();
@@ -34,6 +34,8 @@ export async function GET(req: NextRequest) {
       data = await getStockQuotes(POPULAR_ETFS);
     } else if (type === 'index') {
       data = await getStockQuotes(INDICES);
+    } else if (type === 'commodity') {
+      data = await getCommodityPrices();
     } else if (type === 'mixed') {
       const [cryptos, stocks] = await Promise.allSettled([
         getTopCryptos(10, 'usd'),
