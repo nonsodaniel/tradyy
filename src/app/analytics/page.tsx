@@ -75,7 +75,7 @@ export default function AnalyticsPage() {
           assetClass={selected.type}
           coinId={selected.id}
           height={350}
-          defaultRange="3M"
+          defaultRange="1M"
         />
       </Card>
 

@@ -16,12 +16,13 @@ const MARKET_SECTIONS = [
   { label: 'ETFs', type: 'etf', limit: 4 },
 ];
 
-function PriceRow({ asset }: { asset: AssetPrice }) {
+function PriceRow({ asset, type }: { asset: AssetPrice; type: string }) {
   const up = asset.priceChangePct24h > 0;
   const down = asset.priceChangePct24h < 0;
+  const href = type === 'crypto' ? `/asset/crypto/${asset.id}` : `/asset/${type}/${asset.id}`;
 
   return (
-    <Link href={`/asset/crypto/${asset.id}`} className="block">
+    <Link href={href} className="block">
       <div className="flex items-center py-2.5 px-1 hover:bg-[var(--surface-2)] rounded transition-fast cursor-pointer">
         <div className="w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0"
           style={{ background: 'var(--surface-2)', color: 'var(--muted)' }}>
@@ -114,7 +115,7 @@ export default function MarketOverview() {
               <SectionSkeleton />
             ) : (
               (data || []).slice(0, limit).map((asset) => (
-                <PriceRow key={asset.id} asset={asset} />
+                <PriceRow key={asset.id} asset={asset} type={label === 'Crypto' ? 'crypto' : label === 'Stocks' ? 'stock' : 'etf'} />
               ))
             )}
           </div>

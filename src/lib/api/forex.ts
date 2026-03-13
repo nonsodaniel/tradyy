@@ -27,12 +27,15 @@ export async function convert(
     params: { from, to, amount },
   });
 
-  const rate = data.rates[to];
+  // Frankfurter returns the already-multiplied amount in rates[to].
+  // Divide back by amount to get the per-unit exchange rate.
+  const converted = data.rates[to] ?? 0;
+  const rate = amount !== 0 ? converted / amount : 0;
   return {
     from,
     to,
     amount,
-    result: data.rates[to],
+    result: converted,
     rate,
     timestamp: Date.now(),
   };

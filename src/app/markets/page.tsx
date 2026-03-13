@@ -20,8 +20,8 @@ const TABS: { key: Tab; label: string }[] = [
   { key: 'index', label: 'Indices' },
 ];
 
-function AssetRow({ asset, rank }: { asset: AssetPrice; rank: number }) {
-  const href = `/asset/crypto/${asset.id}`;
+function AssetRow({ asset, rank, type }: { asset: AssetPrice; rank: number; type: string }) {
+  const href = type === 'crypto' ? `/asset/crypto/${asset.id}` : `/asset/${type}/${asset.id}`;
   return (
     <Link href={href} className="block">
       <div className="flex items-center px-3 sm:px-4 py-2.5 hover:bg-[var(--surface-2)] transition-fast">
@@ -142,7 +142,7 @@ export default function MarketsPage() {
               </div>
             ))
           : filtered.map((asset, idx) => (
-              <AssetRow key={asset.id} asset={asset} rank={idx + 1} />
+              <AssetRow key={asset.id} asset={asset} rank={idx + 1} type={tab} />
             ))
         }
 

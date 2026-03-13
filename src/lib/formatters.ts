@@ -46,7 +46,8 @@ export function formatNumber(value: number, decimals = 2): string {
 }
 
 export function formatCompact(value: number): string {
-  const v = value ?? 0;
+  const v = (value ?? 0);
+  if (isNaN(v) || !isFinite(v)) return '—';
   if (Math.abs(v) >= 1_000_000_000_000) {
     return `${(v / 1_000_000_000_000).toFixed(2)}T`;
   }

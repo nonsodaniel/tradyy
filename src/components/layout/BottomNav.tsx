@@ -1,14 +1,14 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, TrendingUp, Briefcase, Newspaper, ArrowLeftRight } from 'lucide-react';
+import { LayoutDashboard, TrendingUp, Lightbulb, Building2, ArrowLeftRight } from 'lucide-react';
 import clsx from 'clsx';
 
 const NAV = [
   { href: '/', label: 'Home', icon: LayoutDashboard },
   { href: '/markets', label: 'Markets', icon: TrendingUp },
-  { href: '/portfolio', label: 'Portfolio', icon: Briefcase },
-  { href: '/news', label: 'News', icon: Newspaper },
+  { href: '/advice', label: 'Advice', icon: Lightbulb },
+  { href: '/companies', label: 'Companies', icon: Building2 },
   { href: '/converter', label: 'Convert', icon: ArrowLeftRight },
 ];
 

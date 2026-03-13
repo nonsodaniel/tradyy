@@ -15,7 +15,7 @@ export default function DashboardPage() {
           Market Overview
         </h1>
         <p className="text-xs sm:text-sm mt-0.5" style={{ color: 'var(--muted)' }}>
-          Real-time prices, news, and portfolio insights
+          Real-time prices, news, and market insights
         </p>
       </div>
 

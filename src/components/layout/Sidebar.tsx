@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
   TrendingUp,
-  Briefcase,
   Newspaper,
   ArrowLeftRight,
   Star,
@@ -12,17 +11,20 @@ import {
   Settings,
   X,
   BarChart2,
+  Lightbulb,
+  Building2,
 } from 'lucide-react';
 import clsx from 'clsx';
 
 const NAV_ITEMS = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/markets', label: 'Markets', icon: TrendingUp },
-  { href: '/portfolio', label: 'Portfolio', icon: Briefcase },
+  { href: '/analytics', label: 'Analytics', icon: BarChart2 },
+  { href: '/advice', label: 'Advice', icon: Lightbulb },
+  { href: '/companies', label: 'Companies', icon: Building2 },
   { href: '/news', label: 'News', icon: Newspaper },
   { href: '/converter', label: 'Converter', icon: ArrowLeftRight },
   { href: '/watchlist', label: 'Watchlist', icon: Star },
-  { href: '/analytics', label: 'Analytics', icon: BarChart2 },
   { href: '/alerts', label: 'Alerts', icon: Bell },
 ];
 
