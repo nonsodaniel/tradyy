@@ -39,24 +39,22 @@ export async function getStockQuotes(symbols: string[]): Promise<AssetPrice[]> {
     });
 
     const results = data?.quoteResponse?.result || [];
-    return results.map((q: Record<string, number | string>) => ({
-      id: q.symbol as string,
-      symbol: q.symbol as string,
-      price: q.regularMarketPrice as number,
-      priceChange24h: q.regularMarketChange as number,
-      priceChangePct24h: q.regularMarketChangePercent as number,
-      high24h: q.regularMarketDayHigh as number,
-      low24h: q.regularMarketDayLow as number,
-      volume24h: q.regularMarketVolume as number,
-      marketCap: q.marketCap as number,
-      lastUpdated: new Date().toISOString(),
-      trend:
-        (q.regularMarketChange as number) > 0
-          ? 'up'
-          : (q.regularMarketChange as number) < 0
-          ? 'down'
-          : 'flat',
-    }));
+    return results.map((q: Record<string, number | string>) => {
+      const change = (q.regularMarketChange as number) ?? 0;
+      return {
+        id: q.symbol as string,
+        symbol: q.symbol as string,
+        price: (q.regularMarketPrice as number) ?? 0,
+        priceChange24h: change,
+        priceChangePct24h: (q.regularMarketChangePercent as number) ?? 0,
+        high24h: (q.regularMarketDayHigh as number) ?? 0,
+        low24h: (q.regularMarketDayLow as number) ?? 0,
+        volume24h: (q.regularMarketVolume as number) ?? 0,
+        marketCap: (q.marketCap as number) ?? 0,
+        lastUpdated: new Date().toISOString(),
+        trend: change > 0 ? 'up' : change < 0 ? 'down' : 'flat',
+      };
+    });
   } catch {
     return [];
   }

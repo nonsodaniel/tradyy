@@ -71,7 +71,7 @@ export default function AssetPage({ params }: Props) {
             {asset && (
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-2xl font-bold num" style={{ color: 'var(--foreground)' }}>
-                  ${asset.price < 1 ? asset.price.toFixed(6) : asset.price.toFixed(2)}
+                  ${(asset.price ?? 0) < 1 ? (asset.price ?? 0).toFixed(6) : (asset.price ?? 0).toFixed(2)}
                 </span>
                 <PctBadge value={asset.priceChangePct24h} />
               </div>

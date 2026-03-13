@@ -42,7 +42,7 @@ function AssetRow({ asset, rank }: { asset: AssetPrice; rank: number }) {
         {/* Price + change */}
         <div className="text-right ml-3">
           <div className="font-semibold text-sm num" style={{ color: 'var(--foreground)' }}>
-            ${asset.price < 1 ? asset.price.toFixed(6) : asset.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            ${(asset.price ?? 0) < 1 ? (asset.price ?? 0).toFixed(6) : (asset.price ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </div>
           <PctBadge value={asset.priceChangePct24h} />
         </div>

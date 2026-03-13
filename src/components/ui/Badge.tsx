@@ -33,10 +33,11 @@ export function Badge({ children, variant = 'default', className, size = 'sm' }:
 }
 
 export function PctBadge({ value, className }: { value: number; className?: string }) {
-  const variant = value > 0 ? 'up' : value < 0 ? 'down' : 'neutral';
+  const v = value ?? 0;
+  const variant = v > 0 ? 'up' : v < 0 ? 'down' : 'neutral';
   return (
     <Badge variant={variant} className={className}>
-      {value > 0 ? '+' : ''}{value.toFixed(2)}%
+      {v > 0 ? '+' : ''}{v.toFixed(2)}%
     </Badge>
   );
 }

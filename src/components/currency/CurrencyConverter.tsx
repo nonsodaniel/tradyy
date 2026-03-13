@@ -149,7 +149,7 @@ export default function CurrencyConverter() {
                 {formatCurrency(data.result, to)}
               </span>
               <span className="text-xs" style={{ color: 'var(--muted)' }}>
-                1 {from} = {data.rate.toFixed(6)} {to}
+                1 {from} = {(data.rate ?? 0).toFixed(6)} {to}
               </span>
             </div>
             <p className="text-sm mt-1" style={{ color: 'var(--muted)' }}>

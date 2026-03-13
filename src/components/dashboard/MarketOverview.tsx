@@ -39,7 +39,7 @@ function PriceRow({ asset }: { asset: AssetPrice }) {
         </div>
         <div className="text-right ml-3">
           <div className="text-sm font-medium num" style={{ color: 'var(--foreground)' }}>
-            ${asset.price < 1 ? asset.price.toFixed(6) : asset.price.toFixed(2)}
+            ${(asset.price ?? 0) < 1 ? (asset.price ?? 0).toFixed(6) : (asset.price ?? 0).toFixed(2)}
           </div>
           <div
             className={clsx('text-xs num flex items-center justify-end gap-0.5', {

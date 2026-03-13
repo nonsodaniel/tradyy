@@ -110,7 +110,7 @@ export default function WatchlistPanel() {
               <div className="font-medium text-sm" style={{ color: 'var(--foreground)' }}>{symbol}</div>
               {price ? (
                 <div className="text-xs num" style={{ color: 'var(--muted)' }}>
-                  ${price.price < 1 ? price.price.toFixed(6) : price.price.toFixed(2)}
+                  ${(price.price ?? 0) < 1 ? (price.price ?? 0).toFixed(6) : (price.price ?? 0).toFixed(2)}
                 </div>
               ) : (
                 <div className="text-xs" style={{ color: 'var(--muted-fg)' }}>Loading…</div>

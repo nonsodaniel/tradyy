@@ -44,15 +44,15 @@ export async function getCryptoPrices(
   return data.map((coin) => ({
     id: coin.id,
     symbol: coin.symbol.toUpperCase(),
-    price: coin.current_price,
-    priceChange24h: coin.price_change_24h,
-    priceChangePct24h: coin.price_change_percentage_24h,
-    high24h: coin.high_24h,
-    low24h: coin.low_24h,
-    volume24h: coin.total_volume,
-    marketCap: coin.market_cap,
+    price: coin.current_price ?? 0,
+    priceChange24h: coin.price_change_24h ?? 0,
+    priceChangePct24h: coin.price_change_percentage_24h ?? 0,
+    high24h: coin.high_24h ?? 0,
+    low24h: coin.low_24h ?? 0,
+    volume24h: coin.total_volume ?? 0,
+    marketCap: coin.market_cap ?? 0,
     lastUpdated: coin.last_updated,
-    trend: coin.price_change_24h > 0 ? 'up' : coin.price_change_24h < 0 ? 'down' : 'flat',
+    trend: (coin.price_change_24h ?? 0) > 0 ? 'up' : (coin.price_change_24h ?? 0) < 0 ? 'down' : 'flat',
   }));
 }
 
@@ -70,15 +70,15 @@ export async function getTopCryptos(limit = 50, vsCurrency = 'usd'): Promise<Ass
   return data.map((coin) => ({
     id: coin.id,
     symbol: coin.symbol.toUpperCase(),
-    price: coin.current_price,
-    priceChange24h: coin.price_change_24h,
-    priceChangePct24h: coin.price_change_percentage_24h,
-    high24h: coin.high_24h,
-    low24h: coin.low_24h,
-    volume24h: coin.total_volume,
-    marketCap: coin.market_cap,
+    price: coin.current_price ?? 0,
+    priceChange24h: coin.price_change_24h ?? 0,
+    priceChangePct24h: coin.price_change_percentage_24h ?? 0,
+    high24h: coin.high_24h ?? 0,
+    low24h: coin.low_24h ?? 0,
+    volume24h: coin.total_volume ?? 0,
+    marketCap: coin.market_cap ?? 0,
     lastUpdated: coin.last_updated,
-    trend: coin.price_change_24h > 0 ? 'up' : coin.price_change_24h < 0 ? 'down' : 'flat',
+    trend: (coin.price_change_24h ?? 0) > 0 ? 'up' : (coin.price_change_24h ?? 0) < 0 ? 'down' : 'flat',
   }));
 }
 

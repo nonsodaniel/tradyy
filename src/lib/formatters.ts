@@ -46,24 +46,26 @@ export function formatNumber(value: number, decimals = 2): string {
 }
 
 export function formatCompact(value: number): string {
-  if (Math.abs(value) >= 1_000_000_000_000) {
-    return `${(value / 1_000_000_000_000).toFixed(2)}T`;
+  const v = value ?? 0;
+  if (Math.abs(v) >= 1_000_000_000_000) {
+    return `${(v / 1_000_000_000_000).toFixed(2)}T`;
   }
-  if (Math.abs(value) >= 1_000_000_000) {
-    return `${(value / 1_000_000_000).toFixed(2)}B`;
+  if (Math.abs(v) >= 1_000_000_000) {
+    return `${(v / 1_000_000_000).toFixed(2)}B`;
   }
-  if (Math.abs(value) >= 1_000_000) {
-    return `${(value / 1_000_000).toFixed(2)}M`;
+  if (Math.abs(v) >= 1_000_000) {
+    return `${(v / 1_000_000).toFixed(2)}M`;
   }
-  if (Math.abs(value) >= 1_000) {
-    return `${(value / 1_000).toFixed(2)}K`;
+  if (Math.abs(v) >= 1_000) {
+    return `${(v / 1_000).toFixed(2)}K`;
   }
-  return value.toFixed(2);
+  return v.toFixed(2);
 }
 
 export function formatPct(value: number, decimals = 2): string {
-  const sign = value > 0 ? '+' : '';
-  return `${sign}${value.toFixed(decimals)}%`;
+  const v = value ?? 0;
+  const sign = v > 0 ? '+' : '';
+  return `${sign}${v.toFixed(decimals)}%`;
 }
 
 export function formatChange(value: number, currencyCode = 'USD'): string {
@@ -100,9 +102,10 @@ export function formatDate(dateString: string): string {
 }
 
 export function formatPrice(price: number, symbol?: string): string {
-  if (price === 0 || isNaN(price)) return '—';
-  if (price < 0.001) return price.toExponential(4);
-  if (price < 1) return price.toFixed(6);
-  if (price < 100) return price.toFixed(4);
-  return price.toFixed(2);
+  const p = price ?? 0;
+  if (p === 0 || isNaN(p)) return '—';
+  if (p < 0.001) return p.toExponential(4);
+  if (p < 1) return p.toFixed(6);
+  if (p < 100) return p.toFixed(4);
+  return p.toFixed(2);
 }
