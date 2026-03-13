@@ -7,6 +7,8 @@ import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge, PctBadge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { formatCurrency, formatPct, formatCompact } from '@/lib/formatters';
+import { useHasMounted } from '@/hooks/useHasMounted';
+import { LoadingSkeleton } from '@/components/ui/Spinner';
 import type { AssetPrice } from '@/types/asset';
 import clsx from 'clsx';
 
@@ -31,6 +33,7 @@ function getSymbolToIdMap(): Record<string, string> {
 }
 
 export default function PortfolioView() {
+  const mounted = useHasMounted();
   const { holdings, removeHolding, addHolding } = usePortfolioStore();
   const [showAddForm, setShowAddForm] = useState(false);
   const [form, setForm] = useState({
@@ -39,7 +42,7 @@ export default function PortfolioView() {
     assetClass: 'stock',
     quantity: '',
     avgBuyPrice: '',
-    buyDate: new Date().toISOString().slice(0, 10),
+    buyDate: '2025-01-01',
     currency: 'USD',
   });
 
@@ -124,6 +127,17 @@ export default function PortfolioView() {
       quantity: '', avgBuyPrice: '',
       buyDate: new Date().toISOString().slice(0, 10), currency: 'USD',
     });
+  }
+
+  if (!mounted) {
+    return (
+      <div className="space-y-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {[...Array(4)].map((_, i) => <LoadingSkeleton key={i} className="h-20 rounded-lg" />)}
+        </div>
+        <LoadingSkeleton className="h-64 rounded-lg" />
+      </div>
+    );
   }
 
   return (

@@ -164,3 +164,33 @@ body {
 .fade-in {
   animation: fadeIn 200ms ease forwards;
 }
+
+/* Safe area for bottom nav on iOS */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Line clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Touch targets on mobile */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 36px;
+  }
+  .data-table td, .data-table th {
+    padding: 8px;
+    font-size: 12px;
+  }
+}

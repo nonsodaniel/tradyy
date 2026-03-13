@@ -17,6 +17,6 @@ export const useSettingsStore = create<SettingsState>()(
       setCurrency: (currency) => set({ currency }),
       setLocale: (locale) => set({ locale }),
     }),
-    { name: 'tradyy-settings' }
+    { name: 'tradyy-settings', skipHydration: true }
   )
 );

@@ -35,7 +35,7 @@ function NewsCard({ article }: { article: NewsArticle }) {
               {article.source}
             </span>
             <span className="text-xs" style={{ color: 'var(--muted-fg)' }}>·</span>
-            <span className="text-xs" style={{ color: 'var(--muted)' }}>
+            <span className="text-xs" style={{ color: 'var(--muted)' }} suppressHydrationWarning>
               {formatRelativeTime(article.publishedAt)}
             </span>
             <Badge variant={sentimentVariant(article.sentiment)} className="capitalize">

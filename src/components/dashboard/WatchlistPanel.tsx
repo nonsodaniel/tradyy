@@ -6,12 +6,15 @@ import { useWatchlistStore } from '@/store/watchlist';
 import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
 import { PctBadge } from '@/components/ui/Badge';
 import { formatCurrency } from '@/lib/formatters';
+import { useHasMounted } from '@/hooks/useHasMounted';
+import { LoadingSkeleton } from '@/components/ui/Spinner';
 import type { AssetPrice } from '@/types/asset';
 import clsx from 'clsx';
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 export default function WatchlistPanel() {
+  const mounted = useHasMounted();
   const { symbols, remove, add } = useWatchlistStore();
   const [addInput, setAddInput] = useState('');
   const [showInput, setShowInput] = useState(false);
@@ -36,6 +39,19 @@ export default function WatchlistPanel() {
       setAddInput('');
       setShowInput(false);
     }
+  }
+
+  if (!mounted) {
+    return (
+      <Card padding={false}>
+        <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
+          <LoadingSkeleton className="h-4 w-24" />
+        </div>
+        <div className="p-3 space-y-2">
+          {[...Array(5)].map((_, i) => <LoadingSkeleton key={i} className="h-9 rounded-md" />)}
+        </div>
+      </Card>
+    );
   }
 
   return (

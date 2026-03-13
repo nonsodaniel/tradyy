@@ -88,6 +88,6 @@ export const usePortfolioStore = create<PortfolioState>()(
           alerts: s.alerts.map((a) => (a.id === id ? { ...a, active: !a.active } : a)),
         })),
     }),
-    { name: 'tradyy-portfolio' }
+    { name: 'tradyy-portfolio', skipHydration: true }
   )
 );

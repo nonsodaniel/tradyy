@@ -28,6 +28,6 @@ export const useWatchlistStore = create<WatchlistState>()(
       has: (symbol) => get().symbols.includes(symbol),
       clear: () => set({ symbols: [] }),
     }),
-    { name: 'tradyy-watchlist' }
+    { name: 'tradyy-watchlist', skipHydration: true }
   )
 );
