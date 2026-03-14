@@ -5,7 +5,7 @@ import { LayoutDashboard, TrendingUp, Lightbulb, Building2, ArrowLeftRight } fro
 import clsx from 'clsx';
 
 const NAV = [
-  { href: '/', label: 'Home', icon: LayoutDashboard },
+  { href: '/dashboard', label: 'Home', icon: LayoutDashboard },
   { href: '/markets', label: 'Markets', icon: TrendingUp },
   { href: '/advice', label: 'Advice', icon: Lightbulb },
   { href: '/companies', label: 'Companies', icon: Building2 },
@@ -25,7 +25,7 @@ export default function BottomNav() {
       }}
     >
       {NAV.map(({ href, label, icon: Icon }) => {
-        const active = pathname === href || (href !== '/' && pathname.startsWith(href));
+        const active = pathname === href || (href !== '/dashboard' && pathname.startsWith(href));
         return (
           <Link
             key={href}
